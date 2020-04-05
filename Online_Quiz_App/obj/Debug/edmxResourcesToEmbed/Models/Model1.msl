@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_QiuzModelStoreContainer" CdmEntityContainer="DB_QiuzEntities">
+    <EntitySetMapping Name="Tbl_Admin">
+      <EntityTypeMapping TypeName="DB_QiuzModel.Tbl_Admin">
+        <MappingFragment StoreEntitySet="Tbl_Admin">
+          <ScalarProperty Name="Ad_ID" ColumnName="Ad_ID" />
+          <ScalarProperty Name="Ad_Name" ColumnName="Ad_Name" />
+          <ScalarProperty Name="Ad_Password" ColumnName="Ad_Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Category">
+      <EntityTypeMapping TypeName="DB_QiuzModel.Tbl_Category">
+        <MappingFragment StoreEntitySet="Tbl_Category">
+          <ScalarProperty Name="Cat_ID" ColumnName="Cat_ID" />
+          <ScalarProperty Name="Cat_Name" ColumnName="Cat_Name" />
+          <ScalarProperty Name="Cat_FK_adid" ColumnName="Cat_FK_adid" />
+          <ScalarProperty Name="cat_encrypted" ColumnName="cat_encrypted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Questions">
+      <EntityTypeMapping TypeName="DB_QiuzModel.Tbl_Questions">
+        <MappingFragment StoreEntitySet="Tbl_Questions">
+          <ScalarProperty Name="Q_ID" ColumnName="Q_ID" />
+          <ScalarProperty Name="Q_Text" ColumnName="Q_Text" />
+          <ScalarProperty Name="Op_A" ColumnName="Op_A" />
+          <ScalarProperty Name="Op_B" ColumnName="Op_B" />
+          <ScalarProperty Name="Op_C" ColumnName="Op_C" />
+          <ScalarProperty Name="Op_D" ColumnName="Op_D" />
+          <ScalarProperty Name="Correct_Op" ColumnName="Correct_Op" />
+          <ScalarProperty Name="Q_FK_catid" ColumnName="Q_FK_catid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_SetExam">
+      <EntityTypeMapping TypeName="DB_QiuzModel.Tbl_SetExam">
+        <MappingFragment StoreEntitySet="Tbl_SetExam">
+          <ScalarProperty Name="Exam_ID" ColumnName="Exam_ID" />
+          <ScalarProperty Name="Exam_Date" ColumnName="Exam_Date" />
+          <ScalarProperty Name="Exam_FK_Student" ColumnName="Exam_FK_Student" />
+          <ScalarProperty Name="Exam_Name" ColumnName="Exam_Name" />
+          <ScalarProperty Name="Exam_StudentScore" ColumnName="Exam_StudentScore" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Student">
+      <EntityTypeMapping TypeName="DB_QiuzModel.Tbl_Student">
+        <MappingFragment StoreEntitySet="Tbl_Student">
+          <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+          <ScalarProperty Name="S_UserName" ColumnName="S_UserName" />
+          <ScalarProperty Name="S_Password" ColumnName="S_Password" />
+          <ScalarProperty Name="S_FirstName" ColumnName="S_FirstName" />
+          <ScalarProperty Name="S_LastName" ColumnName="S_LastName" />
+          <ScalarProperty Name="S_EmailID" ColumnName="S_EmailID" />
+          <ScalarProperty Name="S_ContactNo" ColumnName="S_ContactNo" />
+          <ScalarProperty Name="S_Birthdate" ColumnName="S_Birthdate" />
+          <ScalarProperty Name="S_Age" ColumnName="S_Age" />
+          <ScalarProperty Name="S_img" ColumnName="S_img" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

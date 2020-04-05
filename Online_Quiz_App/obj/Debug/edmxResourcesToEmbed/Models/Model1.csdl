@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_QiuzModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Tbl_Admin">
+    <Key>
+      <PropertyRef Name="Ad_ID" />
+    </Key>
+    <Property Name="Ad_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ad_Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Tbl_Category" Relationship="Self.FK__Tbl_Categ__Cat_F__36B12243" FromRole="Tbl_Admin" ToRole="Tbl_Category" />
+  </EntityType>
+  <EntityType Name="Tbl_Category">
+    <Key>
+      <PropertyRef Name="Cat_ID" />
+    </Key>
+    <Property Name="Cat_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cat_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Cat_FK_adid" Type="Int32" />
+    <Property Name="cat_encrypted" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Tbl_Admin" Relationship="Self.FK__Tbl_Categ__Cat_F__36B12243" FromRole="Tbl_Category" ToRole="Tbl_Admin" />
+    <NavigationProperty Name="Tbl_Questions" Relationship="Self.FK__Tbl_Quest__Q_FK___38996AB5" FromRole="Tbl_Category" ToRole="Tbl_Questions" />
+  </EntityType>
+  <EntityType Name="Tbl_Questions">
+    <Key>
+      <PropertyRef Name="Q_ID" />
+    </Key>
+    <Property Name="Q_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Q_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Op_A" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Op_B" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Op_C" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Op_D" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Correct_Op" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Q_FK_catid" Type="Int32" />
+    <NavigationProperty Name="Tbl_Category" Relationship="Self.FK__Tbl_Quest__Q_FK___38996AB5" FromRole="Tbl_Questions" ToRole="Tbl_Category" />
+  </EntityType>
+  <EntityType Name="Tbl_SetExam">
+    <Key>
+      <PropertyRef Name="Exam_ID" />
+    </Key>
+    <Property Name="Exam_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Exam_Date" Type="DateTime" Precision="3" />
+    <Property Name="Exam_FK_Student" Type="Int32" />
+    <Property Name="Exam_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Exam_StudentScore" Type="Int32" />
+    <NavigationProperty Name="Tbl_Student" Relationship="Self.FK__Tbl_SetEx__Exam___2C3393D0" FromRole="Tbl_SetExam" ToRole="Tbl_Student" />
+  </EntityType>
+  <EntityType Name="Tbl_Student">
+    <Key>
+      <PropertyRef Name="S_ID" />
+    </Key>
+    <Property Name="S_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="S_UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="S_Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="S_FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="S_LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="S_EmailID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="S_ContactNo" Type="Int32" />
+    <Property Name="S_Birthdate" Type="DateTime" Precision="0" />
+    <Property Name="S_Age" Type="Int32" />
+    <Property Name="S_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Tbl_SetExam" Relationship="Self.FK__Tbl_SetEx__Exam___2C3393D0" FromRole="Tbl_Student" ToRole="Tbl_SetExam" />
+  </EntityType>
+  <Association Name="FK__Tbl_Categ__Cat_F__36B12243">
+    <End Role="Tbl_Admin" Type="Self.Tbl_Admin" Multiplicity="0..1" />
+    <End Role="Tbl_Category" Type="Self.Tbl_Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Admin">
+        <PropertyRef Name="Ad_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Category">
+        <PropertyRef Name="Cat_FK_adid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Quest__Q_FK___38996AB5">
+    <End Role="Tbl_Category" Type="Self.Tbl_Category" Multiplicity="0..1" />
+    <End Role="Tbl_Questions" Type="Self.Tbl_Questions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Category">
+        <PropertyRef Name="Cat_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Questions">
+        <PropertyRef Name="Q_FK_catid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_SetEx__Exam___2C3393D0">
+    <End Role="Tbl_Student" Type="Self.Tbl_Student" Multiplicity="0..1" />
+    <End Role="Tbl_SetExam" Type="Self.Tbl_SetExam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Student">
+        <PropertyRef Name="S_ID" />
+      </Principal>
+      <Dependent Role="Tbl_SetExam">
+        <PropertyRef Name="Exam_FK_Student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB_QiuzEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Tbl_Admin" EntityType="Self.Tbl_Admin" />
+    <EntitySet Name="Tbl_Category" EntityType="Self.Tbl_Category" />
+    <EntitySet Name="Tbl_Questions" EntityType="Self.Tbl_Questions" />
+    <EntitySet Name="Tbl_SetExam" EntityType="Self.Tbl_SetExam" />
+    <EntitySet Name="Tbl_Student" EntityType="Self.Tbl_Student" />
+    <AssociationSet Name="FK__Tbl_Categ__Cat_F__36B12243" Association="Self.FK__Tbl_Categ__Cat_F__36B12243">
+      <End Role="Tbl_Admin" EntitySet="Tbl_Admin" />
+      <End Role="Tbl_Category" EntitySet="Tbl_Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Quest__Q_FK___38996AB5" Association="Self.FK__Tbl_Quest__Q_FK___38996AB5">
+      <End Role="Tbl_Category" EntitySet="Tbl_Category" />
+      <End Role="Tbl_Questions" EntitySet="Tbl_Questions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_SetEx__Exam___2C3393D0" Association="Self.FK__Tbl_SetEx__Exam___2C3393D0">
+      <End Role="Tbl_Student" EntitySet="Tbl_Student" />
+      <End Role="Tbl_SetExam" EntitySet="Tbl_SetExam" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

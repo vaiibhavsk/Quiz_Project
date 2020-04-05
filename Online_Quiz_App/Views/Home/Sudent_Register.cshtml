@@ -1,0 +1,99 @@
+﻿@model Online_Quiz_App.Models.Tbl_Student
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sudent_Register</title>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    
+
+</head>
+
+<body>
+    @*@if (ViewBag.msg == null)
+    {
+        <div class="alert alert-danger">
+            <strong>Error!</strong> @ViewBag.msg
+        </div>
+    }*@
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <h2>Student Registeration</h2>
+                <div class="container" style="width:40%">
+                    <br />
+                    <br />
+
+                    @using (Html.BeginForm("Sudent_Register", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {  <div class="form-group">
+                        <label for="username" style="color:white">Username:</label>
+                        @*<input type="email" class="form-control" id="email" placeholder="Enter email" name="email">*@
+                        @Html.TextBoxFor(x => x.S_UserName, htmlAttributes: new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pwd" style="color:white">Password:</label>
+                        @Html.PasswordFor(x => x.S_Password, new { @class = "form-control" })
+                    </div>
+
+                        <div class="form-group">
+                            <label for="firstname" style="color:white">First name:</label>
+                            @Html.TextBoxFor(x => x.S_FirstName, htmlAttributes: new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lasstname" style="color:white">Last name:</label>
+                            @Html.TextBoxFor(x => x.S_LastName, htmlAttributes: new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" style="color:white">EmailID:</label>
+                            @*<input type="email" class="form-control" id="email" name="email">*@
+                            @Html.TextBoxFor(x => x.S_EmailID, htmlAttributes: new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactnumber" style="color:white">Contact Number:</label>
+                            @Html.TextBoxFor(x => x.S_ContactNo, htmlAttributes: new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="birthdate" style="color:white">Birth Date:</label>
+                            @Html.TextBoxFor(x => x.S_Birthdate, htmlAttributes: new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age" style="color:white">Age:</label>
+                            @Html.TextBoxFor(x => x.S_Age, htmlAttributes: new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pwd" style="color:white">Image:</label>
+                            <input type="file" class="form-control btn btn-info" id="imgfile"
+                                   name="imagefile" />
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Register Now</button>
+
+                    }
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>
